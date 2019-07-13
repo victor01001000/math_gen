@@ -12,7 +12,7 @@ def multiply(var1, var2):
 	return var1 * var2
 
 def divide(var1, var2):
-	return var1/var2
+	return var1 / var2
 
 # Assume that user will enter any number but 0
 def find_common_factors(num):
