@@ -15,6 +15,7 @@ def divide(var1, var2):
 	return var1 / var2
 
 # Assume that user will enter any number but 0
+# Returns a set of common factors
 def find_common_factors(num):
 	number = abs(num)
 	common_factors = set()
@@ -28,17 +29,20 @@ def find_common_factors(num):
 
 	return common_factors
 
-def find_greatest_common_factor(num1, num2):
+
+# Returns the GCF between two numbers
+def find_greatest_common_factors(num1, num2):
 	num1_common_factors = find_common_factors(num1)
 	num2_common_factors = find_common_factors(num2)
 
 	common_factors = num1_common_factors.intersection(num2_common_factors)
 
-	greatest_common_factor = common_factors[len(common_factors) - 1]
+	greatest_common_factor = max(common_factors)
 
 	return greatest_common_factor
 
-# Assume that user will enter fraction as num1/num2 
+# Assume that user will enter fraction as num1/num2
+# This method could be organized in a fraction class 
 def reduce_fraction(fraction):
 	num_den = fraction.split('/')
 	numerator = num_den[0]
