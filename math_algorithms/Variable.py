@@ -1,19 +1,40 @@
 class Variable:
-	# intializer 
-	# @param: coefficient, power, variable 
-	def __init__(self, coeff, power, var):
+	# intializer
+
+	"""
+	@ param: coefficient, variable type, degree
+	"""
+	def __init__(self, coeff, var, power):
 		self.coefficient = str(coeff)
+		self.variable = str(var)
 		self.degree = str(power)
-		self.variable = var
 	
-	# Returns ax^b
-	def get_variable(self):
+	"""
+	Method to return whole function.
+	@ return: ax^b
+	"""
+	def get_function(self):
 		if(self.degree == 0):
 			return self.coefficient
 		return self.coefficient + self.variable + "^" + self.degree
 
+	"""
+	Method to return coefficient of the variable.
+	@ return: a
+	"""
 	def get_coefficient(self):
 		return int(self.coefficient)
 
+	"""
+	Method to retrieve variable type.
+	@ return x
+	"""
+	def get_variable(self):
+		return self.variable
+
+	"""
+	Method to retrieve the degree of function
+	@ return b
+	"""
 	def get_degree(self):
 		return int(self.degree)
