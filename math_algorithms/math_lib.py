@@ -32,7 +32,7 @@ def find_common_factors(num):
 
 
 # Returns the GCF between two numbers
-def find_greatest_common_factors(num1, num2):
+def find_greatest_common_factor(num1, num2):
 	num1_common_factors = find_common_factors(num1)
 	num2_common_factors = find_common_factors(num2)
 
