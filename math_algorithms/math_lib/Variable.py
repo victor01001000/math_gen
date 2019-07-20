@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 class Variable:
 	# intializer
 
@@ -14,8 +16,12 @@ class Variable:
 	@ return: ax^b
 	"""
 	def get_function(self):
-		if(self.degree == 0):
+		if(int(self.degree) == 0):
 			return self.coefficient
+
+		elif(int(self.coefficient) == 1):
+			return self.variable + "^" + self.degree
+
 		return self.coefficient + self.variable + "^" + self.degree
 
 	"""
