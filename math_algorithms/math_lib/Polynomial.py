@@ -46,9 +46,7 @@ class Polynomial:
 
         degree = self.max_degree
         while(degree >= self.min_degree):
-            coefficient = random.randint(self.min_coefficient, self.max_coefficient)
-            var = Variable(coefficient, self.variable_letter, degree)
-
+            var = self.__generate_variable_deg__(degree)
             variable_list.append(var)
 
             degree = degree - 1
