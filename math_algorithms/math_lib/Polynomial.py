@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 sys.path.insert(0, './')
-from math_lib import Variable
+from Variable import Variable
 import random
 
 class Polynomial:
@@ -18,6 +18,11 @@ class Polynomial:
     def __generate_variable__(self):
         coefficient = random.randint(self.min_coefficient, self.max_coefficient)
         degree = random.randint(self.min_degree, self.max_degree)
+
+        return Variable(coefficient, self.variable_letter, degree)
+
+    def __generate_variable_deg__(self, degree):
+        coefficient = random.randint(self.min_coefficient, self.max_coefficient)
 
         return Variable(coefficient, self.variable_letter, degree)
 
