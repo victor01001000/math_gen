@@ -17,10 +17,11 @@ class MathGenTests(unittest.TestCase):
 
   # Verifies random polynomial is being generated
 
-print(math_lib.simple_polygen())
+  # Verifies separate_constants_exponents is working
 
-print(math_lib.complex_polygen(5))
+#print(math_lib.read_and_formulate_problem('5x+6x^2-7y^10+7'))
 
+print(math_lib.multiply_polynomials('5x+1', '2x^2+5'))
 
 if __name__ == '__main__':
   unittest.main()

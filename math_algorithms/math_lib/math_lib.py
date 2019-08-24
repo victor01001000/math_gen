@@ -160,6 +160,38 @@ def power_rule(problem):
   answer = answer[:-1]
   return str(answer)
 
+def read_and_formulate_problem(problem):
+  problem_dict = []
+  terms = re.split('\+|\-', problem)
+  variables = []
+  for a in terms:
+    if re.match('^.*[a-z].*$', a):
+      variables.append(re.findall('[a-z]', a)[0])
+    else:
+      variables.append('None')
+  signs = re.findall('\+|\-', problem)
+  if problem[0] != '-':
+    signs.insert(0, '+')
+  for a, i, j, k in zip(range(len(terms)), terms, variables, signs):
+    problem_dict.append({
+      'sign': k,
+      'constant': int(i.split(j)[0]),
+      'variable': j,
+      'exponent': int(0 if j not in i else (i.split(f"{j}^")[1] if f"{j}^" in i else 1))
+    })
+  return problem_dict
+
+def multiply_polynomials(poly1, poly2):
+  terms_poly1 = read_and_formulate_problem(poly1)
+  terms_poly2 = read_and_formulate_problem(poly2)
+  answer_constants = []
+  answer_exponents = []
+  for i in range(len(terms_poly1)):
+    for j in range(len(terms_poly2)):
+      answer_constants.append(terms_poly1[j]['constant'] * terms_poly2[i]['constant'])
+      answer_exponents.append(terms_poly1[j]['exponent'] + terms_poly2[i]['exponent'])
+  return answer_constants, answer_exponents
+
 def product_rule(problem):
   terms = []
   derived_terms = []
@@ -169,5 +201,5 @@ def product_rule(problem):
   for x in terms:
     derived_terms.append(power_rule(x))
   answer = derived_terms
-  new_problem = str(terms[0] + ' ' + str(derived_terms[1])
+  new_problem = str(terms[0] + ' ' + str(derived_terms[1]))
   return new_problem, answer
