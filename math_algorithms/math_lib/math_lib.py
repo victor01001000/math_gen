@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 import random
+import re
+import math
 
 # A library containing the math operators. For now, this file will contain all the common math operators. 
 
@@ -110,7 +112,7 @@ def complex_polygen(number_of_terms, min_const=1, max_const=100, min_expo=1, max
 #
 #################################################################################
 def separate_terms(problem):
-  terms = problem.split('+')
+  terms = re.split('\+|\-', problem)
   return terms
 
 #################################################################################
@@ -136,8 +138,16 @@ def power_rule(problem):
   new_powers = []
   answer = ""
   for i in terms:
-    constants.append(i.split('x^', 1)[0])
-    powers.append(i.split('x^', 1)[1])
+    if 'x' in i:
+      if 'x^' in i:
+        constants.append(i.split('x^', 1)[0])
+        powers.append(i.split('x^', 1)[1])
+      else:
+        constants.append(i.split('x', 1)[0])
+        powers.append('1')
+    else:
+      constants.append(i)
+      powers.append(0)
   for i, j in zip(constants, powers):
     new_constants.append(int(i) * int(j))
   for i in powers:
@@ -150,6 +160,14 @@ def power_rule(problem):
   answer = answer[:-1]
   return str(answer)
 
-	
-	
-	
+def product_rule(problem):
+  terms = []
+  derived_terms = []
+  a = re.findall('\(.*?\)',problem)
+  for i in a:
+    terms.append(i.strip('(').strip(')'))
+  for x in terms:
+    derived_terms.append(power_rule(x))
+  answer = derived_terms
+  new_problem = str(terms[0] + ' ' + str(derived_terms[1])
+  return new_problem, answer
