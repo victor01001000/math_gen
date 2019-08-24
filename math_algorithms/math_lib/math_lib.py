@@ -4,23 +4,12 @@ import re
 import math
 
 # A library containing the math operators. For now, this file will contain all the common math operators. 
-
-def add (var1, var2):
-	return var1 + var2
-
-def subtract(var1, var2): 
-	return var1 - var2
-
-def multiply(var1, var2):
-	return var1 * var2
-
-def divide(var1, var2):
-	return var1 / var2
+ 
 
 # Assume that user will enter any number but 0
 # Returns a set of common factors
 def find_common_factors(num):
-	number = abs(num)
+	number = abs(int(num))
 	common_factors = set()
 
 	possible_factors = 1
@@ -39,7 +28,7 @@ def find_greatest_common_factor(num1, num2):
 	num2_common_factors = find_common_factors(num2)
 
 	common_factors = num1_common_factors.intersection(num2_common_factors)
-
+	
 	greatest_common_factor = max(common_factors)
 
 	return greatest_common_factor
@@ -48,14 +37,14 @@ def find_greatest_common_factor(num1, num2):
 # This method could be organized in a fraction class 
 def reduce_fraction(fraction):
 	num_den = fraction.split('/')
-	numerator = num_den[0]
-	denominator = num_den[1]
+	numerator = int(num_den[0])
+	denominator = int(num_den[1])
 	gcf = find_greatest_common_factor(numerator, denominator)
 
-	numerator = str(numerator / gcf)
-	denominator = str(denominator / gcf)
+	numerator = numerator / gcf
+	denominator = denominator / gcf
 
-	return numerator + "/" + denominator
+	return str(numerator) + '/' + str(denominator)
 
 #################################################################################
 #
@@ -169,5 +158,11 @@ def product_rule(problem):
   for x in terms:
     derived_terms.append(power_rule(x))
   answer = derived_terms
-  new_problem = str(terms[0] + ' ' + str(derived_terms[1])
+  new_problem = str(terms[0] + ' ' + str(derived_terms[1]))
   return new_problem, answer
+
+
+# Assume problem is poly1/poly2
+def quotient_rule(problem):
+  pass
+  
