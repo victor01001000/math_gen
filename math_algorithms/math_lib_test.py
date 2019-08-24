@@ -12,6 +12,8 @@ class MathGenTests(unittest.TestCase):
     self.assertEqual(math_lib.power_rule('5x^2'), '10x^1')
  
   # Verifies reduce fraction method is working
+  def test_reduce_fraction(self):
+    self.assertEqual(math_lib.reduce_fraction('4/8'), '1/2')
 
   # Verfies combined like terms method is working 
 
