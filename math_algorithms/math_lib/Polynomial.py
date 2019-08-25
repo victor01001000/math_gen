@@ -24,7 +24,7 @@ class Polynomial():
 
      return equation
     	  
-  def get_equation_sequential(self, min_coeff, max_coeff, min_deg):
+  def generate_equation_sequential(self, min_coeff, max_coeff, min_deg):
    
     current_deg = min_deg
     max_deg = start_deg + self.eq_length
@@ -36,7 +36,9 @@ class Polynomial():
 
       current_deg = current_deg + 1
 
-    return self.__assemble_equation__()
 
-  def get_equation_random(self, min_coeff, max_coeff, min_deg, max_deg);
+  def generate_equation_random(self, min_coeff, max_coeff, min_deg, max_deg);
     pass  
+
+  def get_equation(self):
+    return self.__assemble_equation__()
