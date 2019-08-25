@@ -90,66 +90,16 @@ def complex_polygen(number_of_terms, min_const=1, max_const=100, min_expo=1, max
 
 #################################################################################
 #
-#  Descrition: This method will separate the terms of a polynomial expression 
-#    into an array
+#  Descrition: This method will parse inputted polynomial
 #
 #  Params: polynomial expression
 #
-#  Returns an array of separate terms from the polynomial expression
+#  Returns a dictionary of different parts of the polynomial
 #
 #  Example:
 #
 #################################################################################
-def separate_terms(problem):
-  terms = re.split('\+|\-', problem)
-  return terms
-
-#################################################################################
-#
-#  Descrition: This method will solve and return a solution for an inputted 
-#    polynomial expression. The input should be of type string. 
-#  
-#  Format of Input: kx^e
-#    k - constant
-#    x - variable
-#    e - exponent
-#
-#  Returns the derivative of the inputted problem
-#
-#  Example:
-#
-#################################################################################
-def power_rule(problem):
-  terms = separate_terms(problem)
-  constants = []
-  powers = []
-  new_constants = []
-  new_powers = []
-  answer = ""
-  for i in terms:
-    if 'x' in i:
-      if 'x^' in i:
-        constants.append(i.split('x^', 1)[0])
-        powers.append(i.split('x^', 1)[1])
-      else:
-        constants.append(i.split('x', 1)[0])
-        powers.append('1')
-    else:
-      constants.append(i)
-      powers.append(0)
-  for i, j in zip(constants, powers):
-    new_constants.append(int(i) * int(j))
-  for i in powers:
-    new_powers.append(int(i) - 1)
-  for i,j in zip(new_constants, new_powers):
-    answer += str(i)
-    answer += 'x^'
-    answer += str(j)
-    answer += '+'
-  answer = answer[:-1]
-  return str(answer)
-
-def read_and_formulate_problem(problem):
+def parse_problem(problem):
   problem_dict = []
   terms = re.split('\+|\-', problem)
   variables = []
@@ -170,17 +120,67 @@ def read_and_formulate_problem(problem):
     })
   return problem_dict
 
+#################################################################################
+#
+#  Descrition: This method will solve and return a solution for an inputted 
+#    polynomial expression. The input should be of type string. 
+#  
+#  Format of Input: kx^e
+#    k - constant
+#    x - variable
+#    e - exponent
+#
+#  Returns the derivative of the inputted problem
+#
+#  Example:
+#
+#################################################################################
+def power_rule(problem):
+  terms = parse_problem(problem)
+  new_constants = []
+  new_exponents = []
+  answer = ''
+  for i in range(len(terms)):
+    new_constants.append(terms[i]['constant'] * terms[i]['exponent'])
+    new_exponents.append(terms[i]['exponent'] - 1)
+  for a, b, c in zip(new_constants, new_exponents, range(len(terms))):
+    answer += f"{a}x^{b}{terms[c]['sign']}"
+  answer = answer[:-1]
+  return str(answer)
+
+#################################################################################
+#
+# Descrition: This method will multiply two polynomials
+#
+# Params: Two polynomials (Will accept more in the future)
+#
+#################################################################################
 def multiply_polynomials(poly1, poly2):
-  terms_poly1 = read_and_formulate_problem(poly1)
-  terms_poly2 = read_and_formulate_problem(poly2)
+  terms_poly1 = parse_problem(poly1)
+  terms_poly2 = parse_problem(poly2)
+  answer = ''
   answer_constants = []
   answer_exponents = []
+  new_signs = []
   for i in range(len(terms_poly1)):
     for j in range(len(terms_poly2)):
       answer_constants.append(terms_poly1[j]['constant'] * terms_poly2[i]['constant'])
       answer_exponents.append(terms_poly1[j]['exponent'] + terms_poly2[i]['exponent'])
-  return answer_constants, answer_exponents
+      if terms_poly1[j]['sign'] == terms_poly2[i]['sign']:
+        new_signs.append('+')
+      else:
+        new_signs.append('-')
+  for a, b, c in zip(answer_constants, answer_exponents, new_signs):
+    answer += f"{str(a)}x^{str(b)}{str(c)}"
+  return answer[:-1]
 
+#################################################################################
+#
+# Descrition: Product rule
+#
+# Params:
+#
+#################################################################################
 def product_rule(problem):
   terms = []
   derived_terms = []
