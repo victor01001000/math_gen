@@ -1,61 +1,46 @@
 #!/usr/bin/env python3
-import sys
-sys.path.insert(0, './')
-from Variable import Variable
+
+import Variable 
 import random
 
-class Polynomial:
-    # initializer
-    def __init__(self, eq_len, max_coeff, min_coeff, max_deg, min_deg, var_type):
-        self.equation_length = eq_len
-        self.max_coefficient = max_coeff
-        self.min_coefficient = min_coeff
-        self.max_degree = max_deg
-        self.min_degree = min_deg
-        self.variable_letter = var_type
+# this could be PolynomialGenerator and the equations generated get stored in Polynomial. 
 
-    # methods
-    def __generate_variable__(self):
-        coefficient = random.randint(self.min_coefficient, self.max_coefficient)
-        degree = random.randint(self.min_degree, self.max_degree)
+class Polynomial():
 
-        return Variable(coefficient, self.variable_letter, degree)
+  def __init__(self, length, letter):
+    self.eq_length = length 
+    self.var_letter = var_letter
 
-    def __generate_variable_deg__(self, degree):
-        coefficient = random.randint(self.min_coefficient, self.max_coefficient)
+    self.terms_list = list()
 
-        return Variable(coefficient, self.variable_letter, degree)
+  def __assemble_equation__(self):
+    equation = ''
 
-    def __generate_equation__(self, var_list):
-        equation = ""
-        for index in range(len(var_list)):
-            var = var_list[index]
-            if(index == 0):
-                equation = equation + var.get_function()
-            else:
-                if(var.get_coefficient() < 0):
-                    equation = equation + var.get_function()
-                else:
-                    equation = equation + "+" + var.get_function()
+    for i in range(self.eq_length):
+      var = self,terms_list[i]
+      
+      if(var.get_coefficient() < 0):
+        equation += '-' + var.get_function()
+      else: 
+	equation += '+' + var.get_fucntion()
 
-        return equation
+     return equation
+    	  
+  def generate_equation_sequential(self, min_coeff, max_coeff, min_deg):
+   
+    current_deg = min_deg
+    max_deg = start_deg + self.eq_length
+    while current_deg <= max_deg:
+      coefficient = random.randint(min_coeff, max_coeff)
+      var = Variable(coefficient, self.var_letter, current_deg)  
+      
+      self,terms_list.append(var)
 
-
-    def get_equation_sequential(self):
-        variable_list = list()
-
-        degree = self.max_degree
-        while(degree >= self.min_degree):
-            var = self.__generate_variable_deg__(degree)
-            variable_list.append(var)
-
-            degree = degree - 1
-
-        return self.__generate_equation__(variable_list)
-
-poly = Polynomial(3, 3, 1, 2, 0, "x")
-print(poly.get_equation_sequential())
+      current_deg = current_deg + 1
 
 
+  def generate_equation_random(self, min_coeff, max_coeff, min_deg, max_deg);
+    pass  
 
-
+  def get_equation(self):
+    return self.__assemble_equation__()
