@@ -3,6 +3,8 @@
 import Variable 
 import random
 
+# this could be PolynomialGenerator and the equations generated get stored in Polynomial. 
+
 class Polynomial():
 
   def __init__(self, length, letter):
