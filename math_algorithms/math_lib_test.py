@@ -10,7 +10,7 @@ class MathGenTests(unittest.TestCase):
   # Verifies power rule method is working
   def test_power_rule(self):
     print('Power rule')
-    self.assertEqual(math_lib.power_rule('5x^2'), '10x^1')
+#    self.assertEqual(math_lib.power_rule('x^2'), '2x^1')
  
   # Verifies reduce fraction method is working
   def test_reduce_fraction(self):
@@ -25,6 +25,8 @@ class MathGenTests(unittest.TestCase):
   def test_multiply_polynomial(self):
     print('Multiplying polynomials')
     self.assertEqual(math_lib.multiply_polynomials('5x+1', '2x^2+5'), '10x^3+2x^2+25x^1+5x^0')
+
+  print(math_lib.power_rule(math_lib.complex_polygen()))
 
 if __name__ == '__main__':
   unittest.main()

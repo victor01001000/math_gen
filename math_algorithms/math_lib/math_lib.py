@@ -73,20 +73,29 @@ def simple_polygen():
 #  Example:
 #
 #################################################################################
-def complex_polygen(number_of_terms, min_const=1, max_const=100, min_expo=1, max_expo=10):
-  constants = []
-  exponents = []
+def complex_polygen(min_terms=1, max_terms=5, min_const=1, max_const=100, min_expo=1, max_expo=10, variables=1):
+  problem_array = []
+  signs = ['+', '-']
   problem=""
-  for i in range(random.randint(1, number_of_terms)):
-    constants.append(random.randint(min_const, max_const))
-    exponents.append(random.randint(min_expo, max_expo))
-  for i,j in zip(constants, exponents):
-    problem += str(i)
-    problem += 'x^'
-    problem += str(j)
-    problem += '+'
-  problem = problem[:-1]
-  return str(problem)
+  for i in range(random.randint(min_terms, max_terms)):
+    problem_array.append(
+      {
+        'sign': signs[random.randint(0,1)],
+        'constant': random.randint(min_const, max_const),
+        'exponent': random.randint(min_expo, max_expo),
+        'variable': 'x'
+      }
+    )
+  return problem_array
+
+def formulate_problem(problem_array):
+  problem_string=''
+  for i in problem_array:
+    problem_string += f"{i['sign']}{i['constant']}{i['variable']}^{i['exponent']}"
+  if problem_string[0] == '+':
+    return problem_string[1:]
+  else:
+    return problem_string
 
 #################################################################################
 #
@@ -114,7 +123,7 @@ def parse_problem(problem):
   for a, i, j, k in zip(range(len(terms)), terms, variables, signs):
     problem_dict.append({
       'sign': k,
-      'constant': int(i.split(j)[0]),
+      'constant': 1 if i.split(j)[0] == '' else int(i.split(j)[0]), 
       'variable': j,
       'exponent': int(0 if j not in i else (i.split(f"{j}^")[1] if f"{j}^" in i else 1))
     })

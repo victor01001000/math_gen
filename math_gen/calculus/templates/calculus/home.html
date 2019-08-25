@@ -3,12 +3,65 @@
 <head>
 	<title>Problem Generator</title>
 </head>
-
 <body>
 	<h1>Math Problem Generator</h1>
-        <h3>Problem: </h3>
-	<p>{{ problem }}</p>
-        <h3>Answer:</h3>
-        <p>{{ answer }}</p>
+                {% for i in problem_dict %}
+		<p>Hello{{ i }}</p>
+		{% endfor %}
+        <ol>
+		<li>
+        	<h3>Problem: </h3>
+		<p>{% for i in problem0 %}
+			{{i.sign}}{{i.constant}}{{i.variable}}<sup>{{i.exponent}}</sup>
+                {% endfor %}
+		</p>
+        	<h3>Answer:</h3>
+		<div id="answerDiv">
+        	<p>{% for i in answer0 %}
+			{{i.sign}}{{i.constant}}{{i.variable}}<sup>{{i.exponent}}</sup>
+		{% endfor %}
+		</p>
+		</div>
+                <button onclick="myFunction()">Show Answer</button>
+		</li>
+		<li>
+                <h3>Problem: </h3>
+                <p>{% for i in problem1 %}
+                        {{i.sign}}{{i.constant}}{{i.variable}}<sup>{{i.exponent}}</sup>
+                {% endfor %}
+                </p>
+                <h3>Answer:</h3>
+		<div id="answerDiv">
+                <p>{% for i in answer1 %}
+                        {{i.sign}}{{i.constant}}{{i.variable}}<sup>{{i.exponent}}</sup>
+                {% endfor %}
+                </p>
+                </div>
+		<button onclick="myFunction()">Show Answer</button>
+                </li>
+		<li>
+                <h3>Problem: </h3>
+                <p>{% for i in problem2 %}
+                        {{i.sign}}{{i.constant}}{{i.variable}}<sup>{{i.exponent}}</sup>
+                {% endfor %}
+                </p>
+                <h3>Answer:</h3>
+                <p>{% for i in answer2 %}
+                        {{i.sign}}{{i.constant}}{{i.variable}}<sup>{{i.exponent}}</sup>
+                {% endfor %}
+                </p>
+		<button type="button">Show Answer</button>
+                </li>
+	</ol>
 </body>
+<script type="text/javascript">
+function myFunction() {
+  var x = document.getElementById("answerDiv");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 </html>
