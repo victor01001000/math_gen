@@ -1,46 +1,27 @@
 #!/usr/bin/env python3
 
 class Variable:
-	# intializer
+    # intializer
 
-	"""
-	@ param: coefficient, variable type, degree
-	"""
-	def __init__(self, coeff, var, power):
-		self.coefficient = str(coeff)
-		self.variable = str(var)
-		self.degree = str(power)
-	
-	"""
-	Method to return whole function.
-	@ return: ax^b
-	"""
-	def get_function(self):
-		if(int(self.degree) == 0):
-			return self.coefficient
+    """
+    @ param: coefficient, variable type, degree
+    """
 
-		elif(int(self.coefficient) == 1):
-			return self.variable + "^" + self.degree
+    def __init__(self, coeff, letter, power):
+        self.coefficient = str(coeff)
+        self.var_letter = str(letter)
+        self.degree = str(power)
 
-		return self.coefficient + self.variable + "^" + self.degree
+    """
+    Method to return whole function.
+    @ return: ax^b
+    """
 
-	"""
-	Method to return coefficient of the variable.
-	@ return: a
-	"""
-	def get_coefficient(self):
-		return int(self.coefficient)
+    def get_function(self):
+        if (int(self.degree) == 0):
+            return self.coefficient
 
-	"""
-	Method to retrieve variable type.
-	@ return x
-	"""
-	def get_variable(self):
-		return self.variable
+        elif (int(self.coefficient) == 1):
+            return self.variable + "^" + self.degree
 
-	"""
-	Method to retrieve the degree of function
-	@ return b
-	"""
-	def get_degree(self):
-		return int(self.degree)
+        return self.coefficient + self.variable + "^" + self.degree

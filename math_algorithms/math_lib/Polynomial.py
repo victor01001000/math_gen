@@ -1,46 +1,22 @@
 #!/usr/bin/env python3
 
-import Variable 
-import random
-
-# this could be PolynomialGenerator and the equations generated get stored in Polynomial. 
-
 class Polynomial():
 
-  def __init__(self, length, letter):
-    self.eq_length = length 
-    self.var_letter = var_letter
-
-    self.terms_list = list()
-
-  def __assemble_equation__(self):
-    equation = ''
-
-    for i in range(self.eq_length):
-      var = self,terms_list[i]
-      
-      if(var.get_coefficient() < 0):
-        equation += '-' + var.get_function()
-      else: 
-	equation += '+' + var.get_fucntion()
-
-     return equation
-    	  
-  def generate_equation_sequential(self, min_coeff, max_coeff, min_deg):
-   
-    current_deg = min_deg
-    max_deg = start_deg + self.eq_length
-    while current_deg <= max_deg:
-      coefficient = random.randint(min_coeff, max_coeff)
-      var = Variable(coefficient, self.var_letter, current_deg)  
-      
-      self,terms_list.append(var)
-
-      current_deg = current_deg + 1
+    def __init__(self, generated_eq):
+        self.terms_list = generated_eq
 
 
-  def generate_equation_random(self, min_coeff, max_coeff, min_deg, max_deg);
-    pass  
+    def get_equation(self):
+        constructed_eq = ''
+        for i in range(len(self.terms_list)):
+            element = self.terms_list[i]
 
-  def get_equation(self):
-    return self.__assemble_equation__()
+            if int(element.coefficient) < 0:
+                constructed_eq += element.get_function()
+            else:
+                if(i == 0):
+                    constructed_eq += element.get_function()
+                else:
+                    constructed_eq += '+' + element.get_function()
+
+        return constructed_eq
