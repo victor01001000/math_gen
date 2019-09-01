@@ -1,10 +1,5 @@
 #!/usr/bin/env python3
 
-import Variable 
-import random
-
-# this could be PolynomialGenerator and the equations generated get stored in Polynomial. 
-
 class Polynomial():
 
   def __init__(self, min_terms, max_terms, min_const, max_const, min_deg, max_deg, letter):
@@ -54,7 +49,5 @@ class Polynomial():
 
       current_deg = current_deg + 1
 
-
   def generate_equation_random(self, min_coeff, max_coeff, min_deg, max_deg):
-    pass  
-
+    pass
