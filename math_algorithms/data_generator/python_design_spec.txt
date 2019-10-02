@@ -1,0 +1,37 @@
+Design Spec for Data Generator Tool in Python
+
+Name: Rapid Data
+
+Description of Tool:
+Rapid Data is a tool that will generate a csv file full of data. The tool will take in a JSON file which will provide the parameters for how the csv file will be generated. The tool will also take in SQL DDLs and generate data based off of the DDL. 
+
+Command Line Options:
+-n : number of rows of data
+-f : path to file
+-r : option to generate completely random DDL and create data based off the newly created DDL
+-c : number of random columns
+-h : print help text
+
+Example Use:
+./rapid_data -f json_file -n 100 # Will generate a 100 rows of data based off of Json File
+./rapid_data -f foo.ddl -n 100 # Will parse ddl and generate a 100 rows of data
+
+Example of Json File
+{
+  "name": "name of file to be created",
+  "random": <true or false>,
+  "table": [
+    {
+      "name": "Name of table",
+      "columns":
+      [
+        "name": "Name of column",
+        "datatype": "Datatype",
+        "min": "Minimum value of data to be generated",
+        "max": "Maximum value of data to be generated",
+        "unique": Amount of unique values
+      ]
+    }
+  ]
+}
+
